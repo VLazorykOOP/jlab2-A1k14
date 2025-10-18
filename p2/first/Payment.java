@@ -94,4 +94,37 @@ public class Payment {
     public double getNetSalary() {
         return this.accruedAmount - this.deductedAmount;
     }
+
+    @Override
+    public String toString(){
+        String name = String.format("Працівник: " + this.getFirstName() + " " + this.getLastName());
+        String yearex = String.format("Стаж роботи (повних років): " + this.calculateExperienceYears());
+
+        String line1 = String.format("---------------------------");
+
+        // Виводимо суми, які були автоматично розраховані в конструкторі
+        // (Використовуємо `printf` для гарного форматування грошей)
+        String accrued = String.format("Нарахована сума: %.2f грн%n", this.getAccruedAmount());
+        String deducted = String.format("Утримана сума (податок): %.2f грн%n", this.getDeductedAmount());
+
+        String line2 = String.format("---------------------------");
+        String salary = String.format("Сума до видачі ('на руки'): %.2f грн%n", this.getNetSalary());
+
+    return name + "\n" + yearex + "\n" + line1 + "\n" + accrued + deducted + line2 + "\n" + salary;}
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || this.getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Payment other = (Payment) obj;
+        return this.firstName.equals(other.firstName) &&
+                this.lastName.equals(other.lastName) &&
+                this.hireDate.equals(other.hireDate);
+    }
 }

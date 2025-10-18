@@ -25,17 +25,6 @@ public class MainProgram {
         // Використовуємо методи, які ми створили
 
         System.out.println("--- Розрахунок зарплати ---");
-        System.out.println("Працівник: " + employee1.getFirstName() + " " + employee1.getLastName());
-        System.out.println("Стаж роботи (повних років): " + employee1.calculateExperienceYears());
-
-        System.out.println("---------------------------");
-
-        // Виводимо суми, які були автоматично розраховані в конструкторі
-        // (Використовуємо `printf` для гарного форматування грошей)
-        System.out.printf("Нарахована сума: %.2f грн%n", employee1.getAccruedAmount());
-        System.out.printf("Утримана сума (податок): %.2f грн%n", employee1.getDeductedAmount());
-
-        System.out.println("---------------------------");
-        System.out.printf("Сума до видачі ('на руки'): %.2f грн%n", employee1.getNetSalary());
+        System.out.println(employee1);
     }
 }
