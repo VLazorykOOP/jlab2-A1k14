@@ -1,0 +1,97 @@
+import java.util.Calendar;
+import java.util.Date;
+
+public class Payment {
+    // Особиста інформація та вихідні дані
+    private String firstName;
+    private String lastName;
+    private Date hireDate;
+    private double salary; // Оклад
+    private double bonusPercentage;
+    private double taxPercentage;
+    private int daysWorked;
+    private int totalWorkingDays;
+
+    // Обчислювані поля
+    private double accruedAmount; // Нарахована сума
+    private double deductedAmount; // Утримана сума
+
+    public Payment(String firstName, String lastName, Date hireDate, double salary,
+                   double bonusPercentage, double taxPercentage, int daysWorked, int totalWorkingDays) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.hireDate = hireDate;
+        this.salary = salary;
+        this.bonusPercentage = bonusPercentage;
+        this.taxPercentage = taxPercentage;
+        this.daysWorked = daysWorked;
+        this.totalWorkingDays = totalWorkingDays;
+
+        this.calculateAccruedAmount();
+        this.calculateDeductedAmount();
+    }
+    public double calculateAccruedAmount() {
+        double salary_per_day = this.salary / this.totalWorkingDays;
+        double total_salary = salary_per_day * this.daysWorked;
+        total_salary += total_salary * this.bonusPercentage / 100;
+        this.accruedAmount = total_salary;
+        return this.accruedAmount;
+
+
+
+    }
+
+    public double calculateDeductedAmount() {
+        this.deductedAmount = this.accruedAmount * this.taxPercentage / 100;
+        return this.deductedAmount;
+    }
+
+    public int calculateExperienceYears() {
+        Calendar now = Calendar.getInstance();
+
+        Calendar hireCal = Calendar.getInstance();
+        hireCal.setTime(this.hireDate); // Встановлюємо на дату прийому
+
+        int currentYear = now.get(Calendar.YEAR);
+        int hireYear = hireCal.get(Calendar.YEAR);
+
+        int experience = currentYear - hireYear;
+
+        // Перевірка, чи річниця цього року вже була
+        int currentDayOfYear = now.get(Calendar.DAY_OF_YEAR);
+        int hireDayOfYear = hireCal.get(Calendar.DAY_OF_YEAR);
+
+        if (currentDayOfYear < hireDayOfYear) {
+            experience--; // Віднімаємо 1, якщо повний рік ще не минув
+        }
+
+        return experience;
+    }
+
+    // --- Методи для доступу до даних (Getters) ---
+    // Вони потрібні, щоб MainProgram міг читати приватні поля
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public double getAccruedAmount() {
+        return accruedAmount;
+    }
+
+    public double getDeductedAmount() {
+        return deductedAmount;
+    }
+
+    /**
+     * Обчислює чисту зарплату ("на руки").
+     * Цей метод теж потрібен для MainProgram.
+     */
+    public double getNetSalary() {
+        return this.accruedAmount - this.deductedAmount;
+    }
+}
