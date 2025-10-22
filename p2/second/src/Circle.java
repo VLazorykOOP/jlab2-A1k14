@@ -16,4 +16,44 @@ public class Circle {
     public double getCircumference() {
         return 2 * Math.PI * radius;
     }
+    public boolean isInside(double pointX, double pointY) {
+        double dx = pointX - this.x;
+        double dy = pointY - this.y;
+
+        double distance = Math.hypot(dx, dy);
+
+        return distance <= this.radius;
+    }
+
+    public int getIntersectionPoints(Circle other) {
+        double dx = this.x - other.x;
+        double dy = this.y - other.y;
+        double distance = Math.hypot(dx, dy);
+
+        double radiusSum = this.radius + other.radius;
+        double radiusDiff = Math.abs(this.radius - other.radius);
+
+
+        if (distance == 0 && this.radius == other.radius) {
+            return -1;
+        }
+
+        if (distance > radiusSum) {
+            return 0;
+        }
+
+        if (distance == radiusSum) {
+            return 1;
+        }
+
+        if (distance < radiusDiff) {
+            return 0;
+        }
+
+        if (distance == radiusDiff) {
+            return 1;
+        }
+
+        return 2;
+    }
 }
