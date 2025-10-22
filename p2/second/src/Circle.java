@@ -56,4 +56,26 @@ public class Circle {
 
         return 2;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Circle[Radius=%.2f, Center=(%.2f, %.2f)]",
+                this.radius, this.x, this.y);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Circle other = (Circle) obj;
+
+        return this.radius == other.radius &&
+                this.x == other.x &&
+                this.y == other.y;
+    }
 }

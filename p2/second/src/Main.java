@@ -4,6 +4,7 @@ public class Main {
 
         // (Радіус 10, центр в 0,0)
         Circle c1 = new Circle(10, 0, 0);
+        System.out.println(c1);
         System.out.println("--- Створено Коло 1 (Радіус 10, Центр 0,0) ---");
 
 
