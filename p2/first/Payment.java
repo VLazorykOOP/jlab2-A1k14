@@ -2,7 +2,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Payment {
-    // Особиста інформація та вихідні дані
     private String firstName;
     private String lastName;
     private Date hireDate;
@@ -12,7 +11,6 @@ public class Payment {
     private int daysWorked;
     private int totalWorkingDays;
 
-    // Обчислювані поля
     private double accruedAmount; // Нарахована сума
     private double deductedAmount; // Утримана сума
 
@@ -57,19 +55,16 @@ public class Payment {
 
         int experience = currentYear - hireYear;
 
-        // Перевірка, чи річниця цього року вже була
         int currentDayOfYear = now.get(Calendar.DAY_OF_YEAR);
         int hireDayOfYear = hireCal.get(Calendar.DAY_OF_YEAR);
 
         if (currentDayOfYear < hireDayOfYear) {
-            experience--; // Віднімаємо 1, якщо повний рік ще не минув
+            experience--;
         }
 
         return experience;
     }
 
-    // --- Методи для доступу до даних (Getters) ---
-    // Вони потрібні, щоб MainProgram міг читати приватні поля
 
     public String getFirstName() {
         return firstName;
@@ -87,10 +82,6 @@ public class Payment {
         return deductedAmount;
     }
 
-    /**
-     * Обчислює чисту зарплату ("на руки").
-     * Цей метод теж потрібен для MainProgram.
-     */
     public double getNetSalary() {
         return this.accruedAmount - this.deductedAmount;
     }
@@ -102,8 +93,6 @@ public class Payment {
 
         String line1 = String.format("---------------------------");
 
-        // Виводимо суми, які були автоматично розраховані в конструкторі
-        // (Використовуємо `printf` для гарного форматування грошей)
         String accrued = String.format("Нарахована сума: %.2f грн%n", this.getAccruedAmount());
         String deducted = String.format("Утримана сума (податок): %.2f грн%n", this.getDeductedAmount());
 

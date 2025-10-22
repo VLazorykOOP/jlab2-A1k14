@@ -11,18 +11,16 @@ public class MainProgram {
 
 
         Payment employee1 = new Payment(
-                "Іван",                  // firstName
-                "Петренко",             // lastName
-                hireDate,                // hireDate
-                50000.0,                 // salary (оклад)
-                10.0,                    // bonusPercentage (10% надбавки)
-                19.5,                    // taxPercentage (19.5% податку)
-                20,                      // daysWorked (відпрацьовано 20 днів)
-                22                       // totalWorkingDays (всього 22 роб. дні)
+                "Іван",
+                "Петренко",
+                hireDate,
+                50000.0,
+                10.0,
+                19.5,
+                20,
+                22
         );
 
-        // --- 3. Виводимо результати в консоль ---
-        // Використовуємо методи, які ми створили
 
         System.out.println("--- Розрахунок зарплати ---");
         System.out.println(employee1);
